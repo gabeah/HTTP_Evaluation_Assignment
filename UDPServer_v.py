@@ -22,3 +22,27 @@ while True:
     modifiedMessage = message.decode().upper()
     # Send the message back, note the use of encode()
     serverSocket.sendto(modifiedMessage.encode(), clientAddress)
+
+'''
+part of emily's work
+
+
+dropRate = input("Percent of packets to drop (as integer): ") # FIXME: PT2
+
+
+# Loop to be continuously listening
+while True:
+    # We receive, both, message and clientAddress and use 2048 buffer
+    message, clientAddress = serverSocket.recvfrom(2048)
+    # Modify the message as "proof" we got it at the server, note use of decode()
+    modifiedMessage = message.decode().upper()
+
+    #FIXME: PT2
+    n = random.randint(1, 100)
+    if (n <= dropRate):
+        pass
+    else:
+        # Send the message back, note the use of encode()
+        serverSocket.sendto(modifiedMessage.encode(), clientAddress)
+
+'''

@@ -17,3 +17,22 @@ modifiedSentence = clientSocket.recv(1024)
 # Display
 print('Message from server: ', modifiedSentence.decode())
 clientSocket.close()
+
+'''
+emily's work
+
+serverName = input("IP Address: ")
+serverPort = input("Port number: ")
+objectPath = input("Object path: ")
+
+clientSocket = socket(AF_INET, SOCK_STREAM)
+clientSocket.connect((serverName, serverPort))
+
+request = "GET " + str(objectPath) + " HTTP/1.1\r\n"
+clientSocket.send(request.encode())
+
+response = clientSocket.recv(1024)
+print(response.decode())
+
+clientSocket.closer()
+'''
