@@ -1,0 +1,7 @@
+"No.","Time","Source","Destination","Protocol","Length","Info"
+"1","0.000000000","127.0.0.1","127.0.0.1","LLC","46","U F, func=UA; DSAP 0x74 Individual, SSAP 0x64 Response"
+"2","0.000255246","127.0.0.1","127.0.0.1","LLC","46","U F, func=RD; DSAP ISO Network Layer (OSLAN 2) Individual, SSAP 0x44 Response"
+"3","27.555117248","127.0.0.1","127.0.0.1","LLC","53","I, N(R)=54, N(S)=54; DSAP 0x48 Individual, SSAP 0x64 Response"
+"4","27.556399359","127.0.0.1","127.0.0.1","LLC","53","I, N(R)=38, N(S)=38; DSAP 0x48 Individual, SSAP 0x44 Response"
+"5","50.449446438","127.0.0.1","127.0.0.1","LLC","90","S P, func=REJ, N(R)=57; DSAP 0x74 Individual, SSAP 0x68 Command"
+"6","50.452598410","127.0.0.1","127.0.0.1","LLC","90","S P, func=REJ, N(R)=41; DSAP ISO Network Layer (OSLAN 2) Individual, SSAP 0x48 Command"
