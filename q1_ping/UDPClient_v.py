@@ -24,28 +24,30 @@ avg_delay = []
 
 for i in range(10):
 
-    msg = "ping"
-
     sentTime = time.time()
-    clientSocket.sendto(msg.encode(), (serverName, serverPort))
+    clientSocket.sendto(message.encode(), (serverName, serverPort))
 
     clientSocket.settimeout(1) # timeout time of 5 seconds
 
-    try: 
+    try:
+        # Calculate delay, and append to list of all delays 
         RTT = time.time() - sentTime
         avg_delay.append(RTT)
+
+        # recieve message, print to console
         modifiedMessage, servAddr = clientSocket.recvfrom(2048)
         print(modifiedMessage.decode() + " recieved after " + str(RTT) + " seconds!")
         successes += 1
+
     except TimeoutError:
         print("Timeout occurred *** !")
 
+# Calculate average delay
 avg_rtt = 0.0
-
 for i in avg_delay:
     avg_rtt += i
 
+# Print to console, close the connection
 print("The ping succeeded " + str(successes) + " times, with an average RTT of " + str(avg_rtt/successes) + " seconds!")
-
 clientSocket.close()
 

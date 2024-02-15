@@ -1,7 +1,8 @@
 from socket import *
 
 # IP address
-serverName = '134.10.122.184'
+#serverName = '134.10.122.184' # non-localhost
+serverName = '127.0.0.1' # localhost
 # Port number to use
 serverPort = 12000
 # Create socket for TCP
@@ -18,21 +19,4 @@ modifiedSentence = clientSocket.recv(1024)
 print('Message from server: ', modifiedSentence.decode())
 clientSocket.close()
 
-'''
-emily's work
-
-serverName = input("IP Address: ")
-serverPort = input("Port number: ")
-objectPath = input("Object path: ")
-
-clientSocket = socket(AF_INET, SOCK_STREAM)
-clientSocket.connect((serverName, serverPort))
-
-request = "GET " + str(objectPath) + " HTTP/1.1\r\n"
-clientSocket.send(request.encode())
-
-response = clientSocket.recv(1024)
-print(response.decode())
-
-clientSocket.closer()
-'''
+#-#-#-# Gabe's Code #-#-#-#
