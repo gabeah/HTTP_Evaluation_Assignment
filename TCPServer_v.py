@@ -1,5 +1,7 @@
 from socket import *
 
+import time
+
 # Use this port number
 serverPort = 12000
 # Create a TCP socket
@@ -10,7 +12,7 @@ serverSocket.bind(('', serverPort))
 serverSocket.listen(1)
 
 print('Server is ready to receive')
-while True:
+'''while True:
     # Accept connection (UDP doesn't do this)
     connectionSocket, addr = serverSocket.accept()
     # Receive and decode
@@ -21,6 +23,29 @@ while True:
     connectionSocket.send(capitalizedSentence.encode())
     # Close the socket
     connectionSocket.close()
+'''
+while True: # HTTP Request Handling:
+    # Accept connection
+    connectionSocket, addr = serverSocket.accept()
 
+    httpRequest = connectionSocket.recv(1024).decode()
+    print("Server recieved request:\r\n" + httpRequest + "at " + str(time.time()))
 
+    splitRequest = httpRequest.split()
+
+    if(splitRequest[0] == "GET"):
+        try:
+            print(splitRequest[1])
+            with open(splitRequest[1], 'r') as htmlFileReq:
+                print("found")
+                connectionSocket.send(htmlFileReq.encode() + "\r\n")
+        except FileNotFoundError:
+            print("not found")
+            response = "HTTP/1.1 404 Not Found\r\n\r\n"
+            connectionSocket.send(response.encode())
+    else:
+        response = "HTTP/1.1 400 Bad Request\r\n\r\n"
+        connectionSocket.send(response.encode())
+
+    connectionSocket.close()
 
