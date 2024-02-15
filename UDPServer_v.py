@@ -6,7 +6,8 @@ import random
 
 # serverName here works as the IP address
 # serverPort is on what port we will open up our connection
-serverName = '134.10.133.158'
+# serverName = '134.10.133.158'
+serverName = '127.168.0.1'
 serverPort = 12000
 # SOCK_STREAM for TCP, SOCK_DGRAM for UDP
 # This gets Python to create our socket
