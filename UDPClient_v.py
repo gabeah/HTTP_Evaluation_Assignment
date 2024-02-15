@@ -5,6 +5,7 @@ from socket import *
 
 # =+=+=+ Added Imports =+=+=+ #
 import sys
+import time
 
 # serverName here works as the IP address
 # serverPort is on what port we will open up our connection
@@ -17,14 +18,28 @@ clientSocket = socket(AF_INET, SOCK_DGRAM)
 # Ask user for some input, lowercase just because the server will make uppercase
 message = input('Input a sentence in lowercase:')
 
+successes = 0
+avg_delay = []
+
+for i in range(10):
+
+    msg = "ping"
+
+    sentTime = time.time()
+    clientSocket.sendto(msg.encode(), (serverName, serverPort))
+
+    clientSocket.settimeout(5) # timeout time of 5 seconds
+
+    try: 
+        modifiedMessage, servAddr = clientSocket.recvfrom(2048)
+        print(modifiedMessage.decode())
+    except socket.timeout:
+        print("Timeout occurred")
 
 
 
 
-# Use socket to send message, note the use of encode() and the address
-clientSocket.sendto(message.encode(), (serverName, serverPort))
-# Receiving follows similar format, 2048 is buffer size for input
-modifiedMessage, serverAddress = clientSocket.recvfrom(2048)
-print(modifiedMessage.decode())
+
+
 clientSocket.close()
 
