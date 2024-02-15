@@ -9,7 +9,8 @@ import random
 
 # serverName here works as the IP address
 # serverPort is on what port we will open up our connection
-serverName = '134.10.77.129.'
+# serverName = '134.10.77.129'
+serverName = "127.0.0.1"
 serverPort = 12000
 # SOCK_STREAM for TCP, SOCK_DGRAM for UDP
 # This gets Python to create our socket
@@ -18,56 +19,29 @@ serverSocket = socket(AF_INET, SOCK_DGRAM)
 serverSocket.bind(('', serverPort))
 # Print message just to check everything happened correctly
 print ("Server is ready to receive")
-# Loop to be continuously listening
-
-''' Old...
-while True:
-
-    # We receive, both, message and clientAddress and use 2048 buffer
-    message, clientAddress = serverSocket.recvfrom(2048)
-    # Modify the message as "proof" we got it at the server, note use of decode()
-    modifiedMessage = message.decode().upper()
-    # Send the message back, note the use of encode()
-    serverSocket.sendto(modifiedMessage.encode(), clientAddress)
-'''
 
 #-+-+- Gabe's Work -+-+-+
 
-droprate = sys.argv[1]
+# Pull drop rate (out of 100) from command-line
+droprate = int(sys.argv[1])
+# ensure it is a value we can work with
 assert int(droprate) >= 0 and int(droprate) <= 100 
+print("Drop Rate is set to " + str(droprate) + "%")
 
-print("Drop Rate is set to " + str(droprate)) + "%")
-
+# Server Loop
 while True:
+
+    # Server waits for message on 2048 buffer
     message, clientAddress = serverSocket.recvfrom(2048)
 
-    modifiedMessage = message.decode().upper()
+    print("Message recieved: " + str(message))
 
+    # Check if packet would be dropped
     if random.randrange(1, 99, 1) >= droprate:
+        # Modify message, and echo back
+        modifiedMessage = message.decode().upper()
         serverSocket.sendto(modifiedMessage.encode(), clientAddress)
+        print("Message sent!")
     else:
-        continue
-
-'''
-part of emily's work
-
-
-dropRate = input("Percent of packets to drop (as integer): ") # FIXME: PT2
-
-
-# Loop to be continuously listening
-    while True:
-    # We receive, both, message and clientAddress and use 2048 buffer
-    message, clientAddress = serverSocket.recvfrom(2048)
-    # Modify the message as "proof" we got it at the server, note use of decode()
-    modifiedMessage = message.decode().upper()
-
-    #FIXME: PT2
-    n = random.randint(1, 100)
-    if (n <= dropRate):
-        pass
-    else:
-        # Send the message back, note the use of encode()
-        serverSocket.sendto(modifiedMessage.encode(), clientAddress)
-
-'''
+        # Report packet dropped
+        print('dropped')
