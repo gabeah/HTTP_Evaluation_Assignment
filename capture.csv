@@ -1,0 +1,3 @@
+"No.","Time","Source","Destination","Protocol","Length","Info"
+"28","4.908811","134.10.77.129","134.10.133.158","LLC","56","I P, N(R)=51, N(S)=55; DSAP 0x70 Individual, SSAP 0x68 Response"
+"29","4.909274","134.10.133.158","134.10.77.129","LLC","46","I P, N(R)=35, N(S)=39; DSAP 0x50 Individual, SSAP 0x48 Response"
