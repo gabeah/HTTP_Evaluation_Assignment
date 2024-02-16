@@ -6,8 +6,9 @@ import time
 
 # serverName here works as the IP address
 # serverPort is on what port we will open up our connection
-serverName = '127.0.0.1' # Using localhost for testing on this machine
-# serverName = '134.10.77.129'
+# serverName = '127.0.0.1' # Using localhost for testing on this machine
+# serverName = '134.10.77.129' # gabe
+serverName = '134.10.136.232' # emily
 serverPort = 12000
 # SOCK_STREAM for TCP, SOCK_DGRAM for UDP
 # This gets Python to create our socket
@@ -28,7 +29,6 @@ for i in range(10):
         modifiedMessage, serverAddress = clientSocket.recvfrom(2048)
         # Stop the timer
         received_at = time.time()
-        TIME_OUT = False
         print(modifiedMessage.decode())
         RTT = received_at - sent_at
         rtts.append(RTT)
@@ -43,6 +43,25 @@ packet_loss_rate = 1 - (len(rtts) / 10)
 print("Packet loss rate: " + str(packet_loss_rate))
 
 clientSocket.close()
+
+# 1c 50 % rate
+# PING
+# RTT (ms): 57.541847229003906
+# *
+# *
+# PING
+# RTT (ms): 10.744810104370117
+# PING
+# RTT (ms): 7.340192794799805
+# *
+# PING
+# RTT (ms): 8.53586196899414
+# PING
+# RTT (ms): 7.549047470092773
+# *
+# *
+# Average delay (ms): 18.34235191345215
+# Packet loss rate: 0.5
 
 # emily's thoughts for q3
 '''
