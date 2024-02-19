@@ -10,8 +10,9 @@ import time
 
 # serverName here works as the IP address
 # serverPort is on what port we will open up our connection
-serverName = '127.168.0.1' # Using localhost for testing on this machine
-#serverName = '134.10.133.158'
+# serverName = '127.168.0.1' # Using localhost for testing on this machine
+#serverName = '134.10.133.158' # Sima's Mac
+serverName = '134.10.136.232' # Emily's MAC
 serverPort = 12000
 # SOCK_STREAM for TCP, SOCK_DGRAM for UDP
 # This gets Python to create our socket
